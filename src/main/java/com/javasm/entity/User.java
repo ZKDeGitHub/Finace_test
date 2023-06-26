@@ -15,6 +15,13 @@ public class User {
   private String headImg;
   private long versionId;
 
+  public User() {
+  }
+
+  public User(String userName, String userPwd) {
+    this.userName = userName;
+    this.userPwd = userPwd;
+  }
 
   public long getUserId() {
     return userId;
@@ -111,4 +118,20 @@ public class User {
     this.versionId = versionId;
   }
 
+  @Override
+  public String toString() {
+    return "User{" +
+            "userId=" + userId +
+            ", userName='" + userName + '\'' +
+            ", userPwd='" + userPwd + '\'' +
+            ", roleId=" + roleId +
+            ", regTime='" + regTime + '\'' +
+            ", loginTime='" + loginTime + '\'' +
+            ", isValid=" + isValid +
+            ", createUid=" + createUid +
+            ", remark='" + remark + '\'' +
+            ", headImg='" + headImg + '\'' +
+            ", versionId=" + versionId +
+            '}';
+  }
 }
