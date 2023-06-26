@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.javasm.mapper.MenuMapper">
+
+    <sql id="queryMenu">
+        select menu_id,menu_name,parent_id,menu_url,glyphicon,version_id
+    </sql>
+
+    <resultMap id="menuMap" type="menu">
+        <id column="menu_id" property="menuId"></id>
+        <result column="menu_name" property="menuName"></result>
+        <result column="parent_id" property="parentId"></result>
+        <result column="menu_url" property="menuUrl"></result>
+        <result column="glyphicon" property="glyphicon"></result>
+        <result column="version_id" property="versionId"></result>
+    </resultMap>
+
+    <!--
+        // 根据用户编号和权限等级查询登录用户的菜单数据
+        List<Menu> queryLoginMenuList(@Param("userId") Integer userId, @Param("level") Integer level);
+    -->
+    <select id="queryLoginMenuList" resultType="menu">
+        select am.menu_id,am.menu_name,am.parent_id,am.menu_url,am.glyphicon,am.version_id
+        FROM fin_admin_menu am,fin_user_menu um
+        WHERE am.menu_id = um.menu_id
+        AND um.user_id=#{userId}
+        <if test="level==1">
+            and am.parent_id=0
+        </if>
+        <if test="level==2">
+            and am.parent_id!=0
+        </if>
+
+    </select>
+
+
+</mapper>

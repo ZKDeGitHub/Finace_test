@@ -36,6 +36,8 @@ public class LoginController extends HttpServlet {
         if(loginUser != null){
             entity.setReturnCode(CodeAndMsg.LOGIN_SUCCESS.getReturnCode());
             entity.setReturnMsg(CodeAndMsg.LOGIN_SUCCESS.getReturnMsg());
+
+            // 向session对象上绑定登录用户的权限菜单数据(便于主界面侧栏数据呈现)
         }else{
             entity.setReturnCode(CodeAndMsg.LOGIN_FAILURED.getReturnCode());
             entity.setReturnMsg(CodeAndMsg.LOGIN_FAILURED.getReturnMsg());
