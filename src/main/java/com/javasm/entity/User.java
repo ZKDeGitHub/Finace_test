@@ -3,17 +3,17 @@ package com.javasm.entity;
 
 public class User {
 
-  private long userId;
+  private Integer userId;
   private String userName;
   private String userPwd;
-  private long roleId;
+  private Integer roleId;
   private String regTime;
   private String loginTime;
-  private long isValid;
-  private long createUid;
+  private Integer isValid;
+  private Integer createUid;
   private String remark;
   private String headImg;
-  private long versionId;
+  private Integer versionId;
 
   public User() {
   }
@@ -23,14 +23,13 @@ public class User {
     this.userPwd = userPwd;
   }
 
-  public long getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(long userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
-
 
   public String getUserName() {
     return userName;
@@ -40,7 +39,6 @@ public class User {
     this.userName = userName;
   }
 
-
   public String getUserPwd() {
     return userPwd;
   }
@@ -49,12 +47,11 @@ public class User {
     this.userPwd = userPwd;
   }
 
-
-  public long getRoleId() {
+  public Integer getRoleId() {
     return roleId;
   }
 
-  public void setRoleId(long roleId) {
+  public void setRoleId(Integer roleId) {
     this.roleId = roleId;
   }
 
@@ -74,23 +71,21 @@ public class User {
     this.loginTime = loginTime;
   }
 
-  public long getIsValid() {
+  public Integer getIsValid() {
     return isValid;
   }
 
-  public void setIsValid(long isValid) {
+  public void setIsValid(Integer isValid) {
     this.isValid = isValid;
   }
 
-
-  public long getCreateUid() {
+  public Integer getCreateUid() {
     return createUid;
   }
 
-  public void setCreateUid(long createUid) {
+  public void setCreateUid(Integer createUid) {
     this.createUid = createUid;
   }
-
 
   public String getRemark() {
     return remark;
@@ -100,7 +95,6 @@ public class User {
     this.remark = remark;
   }
 
-
   public String getHeadImg() {
     return headImg;
   }
@@ -109,12 +103,11 @@ public class User {
     this.headImg = headImg;
   }
 
-
-  public long getVersionId() {
+  public Integer getVersionId() {
     return versionId;
   }
 
-  public void setVersionId(long versionId) {
+  public void setVersionId(Integer versionId) {
     this.versionId = versionId;
   }
 

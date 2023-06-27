@@ -5,25 +5,34 @@ import java.util.List;
 
 public class Menu {
 
-  private long menuId;
+  private Integer menuId;
   private String menuName;
-  private long parentId;
+  private Integer parentId;
   private String menuUrl;
   private String glyphicon;
-  private long versionId;
+  private Integer versionId;
 
-  //二级菜单
+  // 二级菜单数据
   private List<Menu> subMenu;
 
+  // 上级菜单名称
+  private String parentName;
 
-  public long getMenuId() {
+  public Menu() {
+  }
+
+  public Menu(String menuName, Integer parentId) {
+    this.menuName = menuName;
+    this.parentId = parentId;
+  }
+
+  public Integer getMenuId() {
     return menuId;
   }
 
-  public void setMenuId(long menuId) {
+  public void setMenuId(Integer menuId) {
     this.menuId = menuId;
   }
-
 
   public String getMenuName() {
     return menuName;
@@ -33,15 +42,13 @@ public class Menu {
     this.menuName = menuName;
   }
 
-
-  public long getParentId() {
+  public Integer getParentId() {
     return parentId;
   }
 
-  public void setParentId(long parentId) {
+  public void setParentId(Integer parentId) {
     this.parentId = parentId;
   }
-
 
   public String getMenuUrl() {
     return menuUrl;
@@ -51,9 +58,6 @@ public class Menu {
     this.menuUrl = menuUrl;
   }
 
-
-
-
   public String getGlyphicon() {
     return glyphicon;
   }
@@ -62,13 +66,28 @@ public class Menu {
     this.glyphicon = glyphicon;
   }
 
-
-  public long getVersionId() {
+  public Integer getVersionId() {
     return versionId;
   }
 
-  public void setVersionId(long versionId) {
+  public void setVersionId(Integer versionId) {
     this.versionId = versionId;
+  }
+
+  public List<Menu> getSubMenu() {
+    return subMenu;
+  }
+
+  public void setSubMenu(List<Menu> subMenu) {
+    this.subMenu = subMenu;
+  }
+
+  public String getParentName() {
+    return parentName;
+  }
+
+  public void setParentName(String parentName) {
+    this.parentName = parentName;
   }
 
   @Override
@@ -81,6 +100,7 @@ public class Menu {
             ", glyphicon='" + glyphicon + '\'' +
             ", versionId=" + versionId +
             ", subMenu=" + subMenu +
+            ", parentName='" + parentName + '\'' +
             '}';
   }
 }

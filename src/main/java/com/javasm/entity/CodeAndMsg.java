@@ -16,7 +16,8 @@ public enum CodeAndMsg {
     LOGIN_SUCCESS(2000, "登录成功"),
     LOGIN_FAILURED(4000, "登录失败"),
     SUCCESS_QUERY(2001, "成功查询到数据"),
-    FAILURED_QUERY(4001, "没有查询到数据");
+    FAILURED_QUERY(4001, "没有查询到数据"),
+    NO_LOGIN(4005, "没有登录");
 
     private Integer returnCode;
     private String returnMsg;

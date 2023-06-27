@@ -13,7 +13,7 @@ public class TestMenuMapper {
     public void queryLoginMenuList() {
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
         MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
-        List<Menu> menuList = menuMapper.queryLoginMenuList(1,1);
+        List<Menu> menuList = menuMapper.queryLoginMenuList(2,1);
         menuList.forEach(menu -> System.out.println(menu));
         SqlSessionUtils.closeSqlSession(sqlSession);
     }
