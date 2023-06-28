@@ -18,6 +18,7 @@ public class Menu {
   // 上级菜单名称
   private String parentName;
 
+
   public Menu() {
   }
 

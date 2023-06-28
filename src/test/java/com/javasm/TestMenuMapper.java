@@ -17,4 +17,12 @@ public class TestMenuMapper {
         menuList.forEach(menu -> System.out.println(menu));
         SqlSessionUtils.closeSqlSession(sqlSession);
     }
+    @Test
+    public void queryAllMenuList(){
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+        List<Menu> menuList = menuMapper.queryAllMenuList(0,5);
+        menuList.forEach(menu -> System.out.println(menu));
+        SqlSessionUtils.closeSqlSession(sqlSession);
+    }
 }

@@ -40,4 +40,13 @@ public class MenuServiceImpl implements com.javasm.service.MenuService {
         }
         return menuList;
     }
+
+    @Override
+    public List<Menu> queryAllMenuList(Integer page,Integer pageSize) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+        List<Menu> menuList = menuMapper.queryAllMenuList((page-1)*pageSize,pageSize);
+        SqlSessionUtils.closeSqlSession(sqlSession);
+        return menuList;
+    }
 }
