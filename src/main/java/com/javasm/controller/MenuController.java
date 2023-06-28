@@ -29,7 +29,7 @@ public class MenuController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 处理跨域
         CORSUtils.handleCors(resp);
-        //测试提交
+
         // 接收请求数据
         req.setCharacterEncoding("utf-8");
         // 当前页
