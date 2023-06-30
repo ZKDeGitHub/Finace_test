@@ -11,7 +11,15 @@ public interface MenuMapper {
     List<Menu> queryLoginMenuList(@Param("userId") Integer userId, @Param("level") Integer level);
 
     // 查询所有的菜单数据
-    List<Menu> queryAllMenuList(@Param("startIndex") Integer startIndex,@Param("pageSize") Integer pageSize);
+    List<Menu> queryAllMenuList(@Param("menu") Menu menu,@Param("startIndex") Integer startIndex,@Param("pageSize") Integer pageSize);
+
+    // 查询菜单的总条数
+    Integer queryTotalNum(Menu menu);
+
+    // 查询一级菜单
+    List<Menu> queryOneMenuList();
+
+
 
 
 }

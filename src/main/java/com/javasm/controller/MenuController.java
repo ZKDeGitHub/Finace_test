@@ -2,6 +2,7 @@ package com.javasm.controller;
 
 import com.javasm.entity.CodeAndMsg;
 import com.javasm.entity.Menu;
+import com.javasm.entity.PageInfo;
 import com.javasm.entity.ReturnEntity;
 import com.javasm.service.MenuService;
 import com.javasm.service.impl.MenuServiceImpl;
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author:
@@ -44,20 +47,39 @@ public class MenuController extends HttpServlet {
         if(pageSizeString != null && !"".equals(pageSizeString)){
             pageSize = Integer.valueOf(pageSizeString);
         }
+        // 菜单名称
+        String menuName = req.getParameter("menuName");
+        // 上级菜单id
+        Integer parentId = 0;
+        String parentIdString = req.getParameter("parentId");
+        if(parentIdString != null && !"".equals(parentIdString)){
+            parentId = Integer.valueOf(parentIdString);
+        }
+        // 把菜单名称和上级菜单id放入Menu对象中，用于条件查询
+        Menu menu = new Menu(menuName,parentId);
 
         // 调用业务层方法
         MenuService menuService = new MenuServiceImpl();
-        List<Menu> menuList = menuService.queryAllMenuList(page,pageSize);
+        List<Menu> menuList = menuService.queryAllMenuList(menu,page,pageSize);
 
         // 设置响应数据
         ReturnEntity entity = new ReturnEntity();
         if(menuList !=null && menuList.size() > 0){
             entity.setReturnMsg(CodeAndMsg.SUCCESS_QUERY.getReturnMsg());
             entity.setReturnCode(CodeAndMsg.SUCCESS_QUERY.getReturnCode());
-            entity.setReturnData(menuList);
+            Map<String,Object> returnMap = new HashMap<>();
+            returnMap.put("menuList",menuList);
+            Integer total = menuService.queryTotalNum(menu);
+            PageInfo pageInfo = new PageInfo(page,pageSize,total);
+            returnMap.put("pageInfo",pageInfo);
+            entity.setReturnData(returnMap);
         } else{
             entity.setReturnMsg(CodeAndMsg.FAILURED_QUERY.getReturnMsg());
             entity.setReturnCode(CodeAndMsg.FAILURED_QUERY.getReturnCode());
+            // 当根据查询条件查询的数据为空时，给一个默认的数据（总条数为0，在第一页，每页显示5条）
+            Map<String, Object> returnMap = new HashMap<>();
+            returnMap.put("pageInfo", new PageInfo(1,5,0));
+            entity.setReturnData(returnMap);
         }
 
         // 写出响应数据

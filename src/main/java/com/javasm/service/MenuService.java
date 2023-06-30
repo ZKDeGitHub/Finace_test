@@ -11,6 +11,11 @@ public interface MenuService {
     List<Menu> queryLoginMenuList(Integer userId);
 
     // 查询所有的菜单数据
+    List<Menu> queryAllMenuList(Menu menu,Integer page, Integer pageSize);
 
-    List<Menu> queryAllMenuList(Integer page, Integer pageSize);
+    //查询菜单的总条数
+    Integer queryTotalNum(Menu menu);
+
+    // 查询一级菜单
+    List<Menu> queryOneMenuList();
 }
