@@ -26,10 +26,19 @@ import java.util.Map;
  * @date: 2023/6/15 14:53
  * @since: 11
  */
-@WebServlet("/menu/query")
-public class MenuController extends HttpServlet {
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+@WebServlet("/menu/*")
+public class MenuController extends BaseController {
+
+    /**
+     * 处理菜单查询请求
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void query(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println("执行MenuController.query()");
         // 处理跨域
         CORSUtils.handleCors(resp);
 
@@ -84,5 +93,46 @@ public class MenuController extends HttpServlet {
 
         // 写出响应数据
         RespUtils.handleResp(resp,entity);
+    }
+
+    /**
+     * 获取一级菜单数据
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void queryOneMenu(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 处理跨域
+        // 接收请求数据
+        // 调用业务层方法
+        // 设置响应数据
+        // 写出响应数据
+        CORSUtils.handleCors(resp);
+        req.setCharacterEncoding("utf-8");
+        MenuService menuService = new MenuServiceImpl();
+        List<Menu> oneMenuList = menuService.queryOneMenuList();
+        ReturnEntity entity = new ReturnEntity();
+        if (oneMenuList != null && oneMenuList.size() > 0) {
+            entity.setReturnCode(CodeAndMsg.SUCCESS_QUERY.getReturnCode());
+            entity.setReturnMsg(CodeAndMsg.SUCCESS_QUERY.getReturnMsg());
+            entity.setReturnData(oneMenuList);
+        } else {
+            entity.setReturnCode(CodeAndMsg.FAILURED_QUERY.getReturnCode());
+            entity.setReturnMsg(CodeAndMsg.FAILURED_QUERY.getReturnMsg());
+        }
+        RespUtils.handleResp(resp, entity);
+
+    }
+
+    /**
+     * 处理菜单新增请求
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("执行MenuController.add()方法");
     }
 }
